@@ -1,0 +1,36 @@
+flutter/ephemeral/
+
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+flutter_*.png
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+
+# Visual Studio user-specific files.
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio build-related files.
+x64/
+x86/
+
+# Visual Studio cache files
+# files ending in .cache can be ignored
+*.[Cc]ache
+# but keep track of directories ending in .cache
+!*.[Cc]ache/
