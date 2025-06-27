@@ -33,6 +33,19 @@ class GridBuilderPage extends StatelessWidget {
                   mData[index]['mobile'].toString(),
                   style: TextStyle(fontSize: 12, color: Colors.white),
                 ),
+                // OutlinedButton(
+                //   onPressed: () {
+                //     ();
+                //     Navigator.pushNamed(context, mData[index]['page']);
+                //   },
+                //   style: OutlinedButton.styleFrom(
+                //     minimumSize: Size(300, 40),
+                //     maximumSize: Size(400, 40),
+                //     backgroundColor: Colors.amber,
+                //     foregroundColor: Colors.white,
+                //   ),
+                //   child: Text('Outlined Button'),
+                // ),
               ],
             ),
           );

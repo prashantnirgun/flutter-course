@@ -1,8 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:test_widget/app_routes.dart';
 
 List<Map<String, dynamic>> mData = [
-  {"name": "Prashant", "bg_color": Colors.purple, "mobile": 12345},
-  {"name": "Savi", "bg_color": Colors.green, "mobile": 67890},
+  {
+    "name": "Prashant",
+    "bg_color": Colors.purple,
+    "mobile": 12345,
+    "page": AppRoutes.LISTPAGE,
+  },
+  {
+    "name": "Savi",
+    "bg_color": Colors.green,
+    "mobile": 67890,
+    "page": AppRoutes.LISTTILEPAGE,
+  },
   {"name": "Swara", "bg_color": Colors.blue, "mobile": 14785},
   {"name": "Amol", "bg_color": Colors.orange, "mobile": 98745},
   {"name": "Mahesh", "bg_color": Colors.amber, "mobile": 45678},
