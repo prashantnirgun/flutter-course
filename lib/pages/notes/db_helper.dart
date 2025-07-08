@@ -17,6 +17,7 @@ class DbHelper {
   static const String COLUMN_NOTE_ID = "n_id";
   static const String COLUMN_NOTE_TITLE = "n_title";
   static const String COLUMN_NOTE_DESC = "n_desc";
+  static const String COLUMN_NOTE_BG = "n_bg";
   static const String COLUMN_NOTE_CREATED_AT = "n_created_at";
 
   Future<Database> initDB() async {
@@ -31,30 +32,47 @@ class DbHelper {
 
     return await openDatabase(
       dbPath,
-      version: 1,
+      version: 2,
       onCreate: (db, version) {
         //Table declaration
         db.execute(
           "CREATE TABLE $TABLE_NOTE ($COLUMN_NOTE_ID integer primary key autoincrement, $COLUMN_NOTE_TITLE text, $COLUMN_NOTE_DESC text, $COLUMN_NOTE_CREATED_AT text)",
         );
       },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          await db.execute(
+            'ALTER TABLE $TABLE_NOTE ADD COLUMN $COLUMN_NOTE_BG INTEGER DEFAULT 1',
+          );
+        }
+      },
     );
   }
 
-  //queries
-  Future<bool> addNote({required String title, required String desc}) async {
+  //add
+  Future<bool> addNote({
+    required String title,
+    required String desc,
+    required int bg,
+  }) async {
     var db = await initDB();
     int rowsEffected = await db.insert(TABLE_NOTE, {
       COLUMN_NOTE_TITLE: title,
       COLUMN_NOTE_DESC: desc,
+      COLUMN_NOTE_BG: bg,
       COLUMN_NOTE_CREATED_AT: DateTime.now().millisecondsSinceEpoch.toString(),
     });
     return rowsEffected > 0;
   }
 
-  Future<List<Map<String, dynamic>>> fetchAllNotes() async {
+  //Get all queries
+  Future<List<Map<String, dynamic>>> fetchAllNotes({String query = ''}) async {
     var db = await initDB();
-    List<Map<String, dynamic>> allData = await db.query(TABLE_NOTE);
+    List<Map<String, dynamic>> allData = await db.query(
+      TABLE_NOTE,
+      where: "$COLUMN_NOTE_TITLE LIKE ? OR $COLUMN_NOTE_DESC LIKE ?",
+      whereArgs: ["%$query%", "%$query%"],
+    );
     return allData;
   }
 
@@ -62,19 +80,20 @@ class DbHelper {
   Future<bool> udpateNote({
     required String title,
     required String desc,
+    required int bg,
     required int id,
   }) async {
     var db = await initDB();
     int rowsEffected = await db.update(TABLE_NOTE, {
       COLUMN_NOTE_TITLE: title,
       COLUMN_NOTE_DESC: desc,
+      COLUMN_NOTE_BG: bg,
     }, where: '$COLUMN_NOTE_ID = $id');
 
     return rowsEffected > 0;
   }
 
   //delete
-
   Future<bool> deleteNote({required int id}) async {
     var db = await initDB();
     int rowsEffected = await db.delete(

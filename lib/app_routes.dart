@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+//import 'package:provider/provider.dart';
 
 import 'pages/home.dart';
 import 'pages/splash_page.dart';
@@ -17,7 +18,14 @@ import 'pages/grid/extent.dart';
 import 'pages/grid/builder.dart';
 import 'pages/grid/tile.dart';
 
-import 'pages/database/note_home.dart';
+//import 'pages/notes/notes_home.dart';
+import 'pages/notes/note_list.dart';
+
+import 'pages/todo/todo_list.dart';
+
+//Provider
+import 'provider/prov_home.dart';
+//import 'provider/counter_provider.dart';
 
 import 'example/shared_pref_counter.dart';
 
@@ -40,6 +48,9 @@ class AppRoutes {
   static const String GRIDTILEPAGE = "/grid_tile";
 
   static const String NOTEPAGE = "/note";
+  static const String TODOPAGE = "/todo";
+
+  static const String PROVIDERPAGE = "/provider";
 
   static const String SHAREDPREFCOUNTER = "/shared_pref_counter";
 
@@ -63,6 +74,14 @@ class AppRoutes {
 
     SHAREDPREFCOUNTER: (_) => SharePrefCounter(),
 
-    NOTEPAGE: (_) => NoteHomePage(),
+    ///NOTEPAGE: (_) => NoteHomePage(),
+    NOTEPAGE: (_) => NoteListPage(),
+    TODOPAGE: (_) => TodoPage(),
+
+    PROVIDERPAGE: (_) => ProvHome(),
+    // PROVIDERPAGE: (_) => ChangeNotifierProvider(
+    //   create: (_) => CounterProvider(),
+    //   child: ProvHome(),
+    // ),
   };
 }

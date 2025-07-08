@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 //import 'example/textfield.dart';
 //import 'example/login.dart';
 //import 'example/register.dart';
@@ -16,8 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //DbHelper? dbHelper;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      // home: ChangeNotifierProvider(
+      //   create: (context) => DBProvider(dbHelper: DbHelper.getInstance()),
+      //   child: NoteHomePage(),
+      // ),
+
       //home: MyLogin(),
       //home: TipCalculator(),
       //home: HomePage(),

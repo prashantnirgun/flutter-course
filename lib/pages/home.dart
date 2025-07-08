@@ -23,9 +23,10 @@ class HomePage extends StatelessWidget {
                 //   MaterialPageRoute(builder: (_) => SharePrefCounter()),
                 // );
                 //Navigator.pushNamed(context, AppRoutes.SHAREDPREFCOUNTER);
+                ///Navigator.pushNamed(context, AppRoutes.PROVIDERPAGE);
                 Navigator.pushNamed(context, AppRoutes.NOTEPAGE);
               },
-              child: Text('Counter'),
+              child: Text('Notes'),
             ),
           ],
         ),
